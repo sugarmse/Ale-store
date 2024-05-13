@@ -1,27 +1,33 @@
-import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
-import { AppDispatch } from './state/store';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
 import { useEffect } from 'react';
-import { fetchData, selectData } from './state/apiSlice';
-
+import { fetchData } from './state/apiSlice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from './state/store';
+import Api from './ApiData'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { LandingPage } from './components/Route';
 function App() {
 const dispatch=useDispatch<AppDispatch>();
+
 useEffect(()=>{
   dispatch(fetchData());
 },[dispatch]);
-const data =useSelector(selectData);
   return (
 		<>
-			{data.map((item, index) => (
-				<ol key={index}>
-					<li>{item.name}</li>
-					<li>{item.price}</li>
-					<img src={item.image}></img>
-				</ol>
-			))}
-			;
+		<BrowserRouter>
+		<Header/>
+		
+		<Routes>
+			<Route path='/home' element={<LandingPage/>}/>
+		</Routes>
+		
+		<Api/>
+		<Footer/>
+		</BrowserRouter>
 		</>
 	);
 }
 
-export default App
+export default App;

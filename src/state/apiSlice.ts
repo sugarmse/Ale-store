@@ -21,7 +21,7 @@ export const fetchData = createAsyncThunk(
   'api/fetchData',
   async () => {
     try {
-      const response = await axios.get<any[]>('https://api.sampleapis.com/beers/ale');
+      const response = await axios.get<any[]>('https://api.sampleapis.com/wines/reds');
   console.log(response.data);
 
 	  return response.data;
