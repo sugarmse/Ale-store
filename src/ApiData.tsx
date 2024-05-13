@@ -8,7 +8,7 @@ function Api() {
 	const dispatch = useDispatch<AppDispatch>();
 	const data = useSelector(selectData);
 	const price = 12;
-    const slicedData = data.slice(1, 11);
+	const slicedData = data.slice(1, 11);
 
 	return (
 		<div>
@@ -16,22 +16,27 @@ function Api() {
 				<button className="home-btn">Home</button>
 			</Link>
 			<div className="all-items">
-
-			{slicedData.map((item, index) => (
-				<div className="items" key={index}>
-					<div className="image">
-					<img src={item.image} alt={item.name} />
+				{slicedData.map((item, index) => (
+					<div className="items" key={index}>
+						<div className="img-btn-info">
+							<div className="image">
+								<img src={item.image} alt={item.name} />
+							</div>
+							<div className="btn-info">
+								<div className="item-info">
+									<p>{item.winery}</p>
+									<p>{item.wine}</p>
+									<p>${price}</p>
+								</div>
+								<div className="cart-btn">
+									<button>Add to Cart</button>
+								</div>
+							</div>
+						</div>
 					</div>
-					<p>{item.winery}</p>
-					<p>{item.wine}</p>
-					<p>${price}</p>
-					<p>
-						<button>Add to Cart</button>
-					</p>
-				</div>
-			))}
-		</div>
+				))}
 			</div>
+		</div>
 	);
 }
 

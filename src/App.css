@@ -21,4 +21,12 @@ ul{
 	padding: 1rem;
 	justify-content: center;
 	align-items: center;
+	background: #deaaaa;
+	height: 40rem;
+}
+.btn-info{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	background: #000;
 }
