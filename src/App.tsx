@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from './state/store';
 import Api from './ApiData'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LandingPage from './components/Route';
+import LandingPage from './components/LandingPage';
 // import CartPage from './components/Cart';
 import { NavBar } from './components/Header';
 import CartPagee from './components/CartPage';

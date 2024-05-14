@@ -1,13 +1,10 @@
 import {
 	Group,
 	Button,
-	UnstyledButton,
 	Divider,
-	Center,
 	Box,
 	Burger,
 	Drawer,
-	Collapse,
 	ScrollArea,
 	rem,
 } from "@mantine/core";
@@ -20,7 +17,6 @@ import { Link } from "react-router-dom";
 export function NavBar() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
 		useDisclosure(false);
-	const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
 	const cart = useSelector((state: RootState) => state.cart);
 	let totalQuantity = 0;
 	cart.items.map((item) => {
@@ -70,7 +66,7 @@ export function NavBar() {
 				<ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
 					<Divider my="sm" />
 
-					<a href="#" className={classes.link}>
+					{/* <a href="#" className={classes.link}>
 						Home
 					</a>
 					<UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -86,7 +82,7 @@ export function NavBar() {
 					</a>
 					<a href="#" className={classes.link}>
 						Academy
-					</a>
+					</a> */}
 
 					<Divider my="sm" />
 
