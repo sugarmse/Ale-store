@@ -1,59 +1,53 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
-import { clearCart, removeItem } from "../state/cartSlice";
-
-const CartPagee = () => {
+import { clearCart, removeItem, decreaseQuantity } from "../state/cartSlice";
+import "./cartPage.scss";
+const CartPage = () => {
 	const cart = useSelector((state: RootState) => state.cart);
 	const dispatch = useDispatch();
 
-	// Check if cart.items is null or undefined
-	if (!cart.items || cart.items.length === 0) {
-		return (
-			<div>
-				Cart
-				<p>Cart items are unavailable.</p>
-			</div>
-		);
-	}
+	const handleRemoveItem = (name: string) => {
+		dispatch(removeItem(name));
+	};
 
-	const handleRemoveItem = (itemId: string) => {
-		dispatch(removeItem(itemId));
+	const handleDecreaseQuantity = (item: { name: string; quantity: number }) => {
+		dispatch(decreaseQuantity(item)); // Dispatch action to reduce quantity by one
 	};
 
 	const handleClearCart = () => {
 		dispatch(clearCart());
 	};
 
-	// Create an object to store the quantity of each item
-	const itemQuantityMap: { [key: string]: number } = {};
-	cart.items.forEach((item) => {
-		if (item.name in itemQuantityMap) {
-			itemQuantityMap[item.name]++;
-		} else {
-			itemQuantityMap[item.name] = 1;
-		}
-	});
-
+	// Stack items based on their names and calculate quantities
 	return (
 		<>
 			<div>
 				Cart
 				<ul>
 					{/* Map over the itemQuantityMap object */}
-					{Object.entries(itemQuantityMap).map(([itemId, quantity]) => {
-						// Find the item object corresponding to the itemId
-						const item = cart.items.find((item) => item.name === itemId);
-						if (!item) return null; // Return null if item not found (shouldn't happen)
-
+					{cart.items.length == 0 && <h1>No items in cart</h1>}
+					{cart.items.map((item, index) => {
 						return (
-							<li key={itemId}>
-								{item.name} x {quantity}
+							<li key={index}>
+								{item.name} x {item.quantity}
+								{/* Decrease quantity */}
+								<button
+									className="remove-item"
+									onClick={() =>
+										handleDecreaseQuantity({
+											name: item.name,
+											quantity: item.quantity,
+										})
+									}
+								>
+									-
+								</button>
+								{/* Remove item */}
 								<button
 									className="remove-item"
 									onClick={() => handleRemoveItem(item.name)}
 								>
-									-
+									x
 								</button>
 							</li>
 						);
@@ -69,4 +63,4 @@ const CartPagee = () => {
 	);
 };
 
-export default CartPagee;
+export default CartPage;

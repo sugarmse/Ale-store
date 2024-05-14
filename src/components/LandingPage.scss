@@ -1,0 +1,49 @@
+.splash-container {
+	position: relative;
+	max-width: 100%;
+	/* Ensure the container doesn't exceed the width of its parent */
+	overflow: hidden;
+
+	/* Hide any overflow */
+	.splash-image {
+		width: 100%;
+		/* Make the image fill its container */
+		height: 83vh;
+		/* Maintain aspect ratio */
+	}
+
+	.slogan {
+		position: absolute;
+		bottom: 42%;
+		font-weight: 500;
+		padding: 0 2rem;
+		z-index: 1;
+		color: white;
+		font-size: 2rem;
+
+		p {
+			font-size: 1.3rem;
+			font-weight: 400;
+		}
+
+		.shop-btn {
+			padding-top: 2rem;
+			font-weight: 400;
+
+			button {
+				color: white;
+				border: none;
+				font-size: 1.1rem;
+				border-radius: 8px;
+				padding: 0.3rem 1rem;
+				background-color: #7a120a;
+
+				&:hover {
+					cursor: pointer;
+					background-color: #8c150d;
+					box-shadow: 0px 5px 8px rgb(38, 38, 38, 0.5);
+				}
+			}
+		}
+	}
+}

@@ -1,12 +1,7 @@
 import {
-	HoverCard,
 	Group,
 	Button,
 	UnstyledButton,
-	Text,
-	SimpleGrid,
-	ThemeIcon,
-	Anchor,
 	Divider,
 	Center,
 	Box,
@@ -15,7 +10,6 @@ import {
 	Collapse,
 	ScrollArea,
 	rem,
-	useMantineTheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
@@ -27,9 +21,12 @@ export function NavBar() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
 		useDisclosure(false);
 	const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-	const theme = useMantineTheme();
 	const cart = useSelector((state: RootState) => state.cart);
-	const cartItems = cart.items.length;
+	let totalQuantity = 0;
+	cart.items.map((item) => {
+		totalQuantity += item.quantity;
+		return totalQuantity;
+	});
 	return (
 		<Box pb={120}>
 			<header className={classes.header}>
@@ -45,34 +42,11 @@ export function NavBar() {
 						>
 							WineShop
 						</Link>
-						{/* <HoverCard
-							width={600}
-							position="bottom"
-							radius="md"
-							shadow="md"
-							withinPortal
-						>
-							<HoverCard.Target>
-								<a href="#" className={classes.link}>
-									<Center inline>
-										<Box component="span" mr={5}>
-											Features
-										</Box>
-									</Center>
-								</a>
-							</HoverCard.Target>
-						</HoverCard> */}
-						{/* <a href="#" className={classes.link}>
-							Learn
-						</a>
-						<a href="#" className={classes.link}>
-							Academy
-						</a> */}
 					</Group>
 
 					<Group visibleFrom="sm">
 						<Link to={"/cart"}>
-							<Button variant="default">Cart({cartItems})</Button>
+							<Button variant="default">Cart({totalQuantity})</Button>
 						</Link>
 					</Group>
 
