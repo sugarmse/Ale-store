@@ -1,7 +1,7 @@
 export const Footer = () => (
 	<footer>
-		<p className="footer">
-			<span className="contact-us">Contact Us</span>
+		<p>
+			<span>Contact Us</span>
 		</p>
 	</footer>
 );

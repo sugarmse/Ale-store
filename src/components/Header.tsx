@@ -35,10 +35,15 @@ export function NavBar() {
 			<header className={classes.header}>
 				<Group justify="space-between" h="100%">
 					<Group h="100%" gap={0} visibleFrom="sm">
-						<Link to={"/Shop"}>
-							<a href="#" className={classes.link}>
-								WineShop
-							</a>
+						<Link
+							to={"/shop"}
+							className={classes.link}
+							style={{
+								fontSize: "1.4rem",
+								color: "#7a120a",
+							}}
+						>
+							WineShop
 						</Link>
 						{/* <HoverCard
 							width={600}

@@ -7,7 +7,7 @@ import { AppDispatch } from './state/store';
 import Api from './ApiData'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LandingPage from './components/Route';
-import CartPage from './components/Cart';
+// import CartPage from './components/Cart';
 import { NavBar } from './components/Header';
 import CartPagee from './components/CartPage';
 function App() {
@@ -27,8 +27,10 @@ useEffect(()=>{
 			<Route path ='/shop' element={<Api/>}/>
 		</Routes>
 
-		
+		<div className='footer'>
+
 		<Footer/>
+		</div>
 		</BrowserRouter>
 		</>
 	);
