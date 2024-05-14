@@ -1,19 +1,20 @@
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./state/store";
-import { fetchData, selectData } from "./state/apiSlice";
-import { Link } from "react-router-dom";
+import { selectData } from "./state/apiSlice";
+
 import { addItem } from "./state/cartSlice";
+import "./styles/apiData.scss";
 
 function Api() {
 	const dispatch = useDispatch<AppDispatch>();
 	const data = useSelector(selectData);
 	const price = 12;
 	const slicedData = data.slice(1, 11);
-	const addToCartHandler=(item:{name:string})=>{
-		dispatch(addItem(item));
-		console.log(item);
-	}
+	const addToCartHandler = (item: { name: string }) => {
+		dispatch(addItem(item)); // Dispatch the entire item object
+		localStorage.setItem("item", JSON.stringify(item)); // Store the entire item object in localStorage
+		console.log(item); // Log the entire item object
+	};
 	const cart = useSelector((state: RootState) => state.cart);
 	console.log(cart.items);
 	return (
@@ -25,14 +26,14 @@ function Api() {
 							<div className="image">
 								<img src={item.image} alt={item.name} />
 							</div>
-							<div className="btn-info">
-								<div className="item-info">
-									<p>{item.winery}</p>
-									<p>{item.wine}</p>
-									<p>${price}</p>
+							<div className="item-info-container">
+								<div className="wine-info">
+									<div className="winery">{item.winery}</div>
+									<div className="wine">{item.wine}</div>
+									<div className="price">Price: ${price}</div>
 								</div>
-								<div className="cart-btn">
-									<button onClick={() => addToCartHandler(item.wine)}>
+								<div className="add-btn">
+									<button onClick={() => addToCartHandler({ name: item.wine })}>
 										Add to Cart
 									</button>
 								</div>
@@ -41,9 +42,6 @@ function Api() {
 					</div>
 				))}
 			</div>
-			{cart.items.map((item, index) => (
-				<div key={index}>{item.name}</div>
-			))}
 		</div>
 	);
 }

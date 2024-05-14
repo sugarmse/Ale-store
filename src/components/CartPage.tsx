@@ -23,7 +23,6 @@ const CartPagee = () => {
 				{cart.items.map((item, index) => (
 					<li key={index}>{item.name}</li>
 				))}
-				<li>gg</li>
 				
 			</ul>
 		</div>

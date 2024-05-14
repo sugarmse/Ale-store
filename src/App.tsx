@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { Footer } from './components/Footer';
 import { useEffect } from 'react';
 import { fetchData } from './state/apiSlice';

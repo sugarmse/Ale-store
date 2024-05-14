@@ -35,10 +35,12 @@ export function NavBar() {
 			<header className={classes.header}>
 				<Group justify="space-between" h="100%">
 					<Group h="100%" gap={0} visibleFrom="sm">
-						<a href="#" className={classes.link}>
-							WineShop
-						</a>
-						<HoverCard
+						<Link to={"/Shop"}>
+							<a href="#" className={classes.link}>
+								WineShop
+							</a>
+						</Link>
+						{/* <HoverCard
 							width={600}
 							position="bottom"
 							radius="md"
@@ -54,18 +56,18 @@ export function NavBar() {
 									</Center>
 								</a>
 							</HoverCard.Target>
-						</HoverCard>
-						<a href="#" className={classes.link}>
+						</HoverCard> */}
+						{/* <a href="#" className={classes.link}>
 							Learn
 						</a>
 						<a href="#" className={classes.link}>
 							Academy
-						</a>
+						</a> */}
 					</Group>
 
 					<Group visibleFrom="sm">
 						<Link to={"/cart"}>
-						<Button variant="default">Cart({cartItems})</Button>
+							<Button variant="default">Cart({cartItems})</Button>
 						</Link>
 					</Group>
 
