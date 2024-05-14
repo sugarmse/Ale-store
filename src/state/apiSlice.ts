@@ -35,9 +35,22 @@ export const fetchData = createAsyncThunk(
 
 // Create a slice for handling data
 const dataSlice = createSlice({
-  name: 'data',
+  name: 'wine',
   initialState,
-  reducers: {},
+  reducers: {
+    fetchDataStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchDataSuccess(state, action) {
+      state.loading = false;
+      state.data = action.payload;
+    },
+    fetchDataFailure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
@@ -55,9 +68,10 @@ const dataSlice = createSlice({
   },
 });
 
-// Export actions and reducer
-export const dataActions = dataSlice.actions;
-export const dataReducer = dataSlice.reducer;
+export const { fetchDataStart, fetchDataSuccess, fetchDataFailure } = dataSlice.actions;
 
-// Define a selector to access the data state
-export const selectData = (state: RootState) => state.data;
+export const selectData = (state: { wine: ApiState }) => state.wine.data;
+export const selectLoading = (state: { wine: ApiState }) => state.wine.loading;
+export const selectError = (state: { wine: ApiState }) => state.wine.error;
+
+export default dataSlice.reducer;
