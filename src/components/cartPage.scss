@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+
   .cart-item-container {
     margin-left: 1rem;
     justify-content: center;
@@ -22,20 +23,25 @@
       display: flex;
       align-items: center;
       gap: 2rem;
+
       img {
         height: 15rem;
       }
+
       .winery {
         font-size: 1.2rem;
         color: #7a120a;
       }
+
       .wine {
         height: 4rem;
       }
+
       .quantity {
         display: flex;
         align-items: center;
         gap: 1rem;
+
         span {
           //   background-color: #7a120a;
           border: 1px solid #7a120a;
@@ -43,11 +49,13 @@
 
           border-radius: 8px;
         }
+
         .remove-btn {
           border-radius: 100%;
           border: none;
           background-color: transparent;
           cursor: pointer;
+
           svg {
             fill: #7a120a;
           }
@@ -55,13 +63,14 @@
       }
     }
   }
+
   .all-btns {
     .clear-cart {
-        border: none;
-        background-color: #434343;
-        color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+      border: none;
+      background-color: #434343;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
 
     }
   }

@@ -10,7 +10,14 @@ function Api() {
 	const price = 12;
 	const slicedData = data.slice(1, 11);
 
-	const addToCartHandler = (item: { name: string; quantity: number }) => {
+	const addToCartHandler = (item: {
+		url: string;
+		winery: string;
+		wine: string;
+		price: number;
+		quantity: number;
+		image: string;
+	}) => {
 		// Dispatch the addItem action with the item details
 		dispatch(addItem(item));
 		// Store the entire item object in localStorage
@@ -37,7 +44,14 @@ function Api() {
 								<div className="add-btn">
 									<button
 										onClick={() =>
-											addToCartHandler({ name: item.wine, quantity: 1 })
+											addToCartHandler({
+												url: item.url,
+												winery: item.winery,
+												wine: item.wine,
+												price: price,
+												quantity: 1,
+												image: item.image,
+											})
 										}
 									>
 										Add to Cart

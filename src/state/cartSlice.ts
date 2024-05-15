@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartItem {
-  name:string,
+  winery:string;
+  wine:string;
   quantity:number,
-  price?:number,
+  price:number,
+  url:string,
+  image: string
 }
 
 interface CartState {
@@ -19,7 +22,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<CartItem>) {
-      const existingItemIndex = state.items.findIndex(item => item.name === action.payload.name);
+      const existingItemIndex = state.items.findIndex(item => item.wine === action.payload.wine);
       if (existingItemIndex !== -1) {
         state.items[existingItemIndex].quantity++;
       } else {
@@ -27,7 +30,7 @@ const cartSlice = createSlice({
       }
     },
     removeItem(state, action: PayloadAction<string>) {
-      state.items = state.items.filter(item => item.name !== action.payload);
+      state.items = state.items.filter(item => item.wine !== action.payload);
     },
     clearCart(state) {
       state.items = [];
@@ -35,7 +38,7 @@ const cartSlice = createSlice({
     decreaseQuantity(state,action: PayloadAction<CartItem>){
       const actionItem = action.payload;
       const updatedItems = state.items.map((item)=> {
-        if (item.name === actionItem.name && actionItem.quantity > 0) {
+        if (item.wine === actionItem.wine && actionItem.quantity > 0) {
           return { ...item, quantity: item.quantity - 1 };
         }
         return item;
